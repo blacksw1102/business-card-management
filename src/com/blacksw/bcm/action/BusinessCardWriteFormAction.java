@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.blacksw.bcm.vo.ActionForward;
 
-public class BusinessCardListAction implements Action {
+public class BusinessCardWriteFormAction implements Action {
 
 	private ActionForward forward;
 	
@@ -15,7 +15,7 @@ public class BusinessCardListAction implements Action {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") != null) {
-			forward = new ActionForward("/businessCard/businessCardList.jsp", false);
+			forward = new ActionForward("/businessCard/businessCardWrite.jsp", false);
 		} else {
 			forward = new ActionForward("/signin", true);
 		}
