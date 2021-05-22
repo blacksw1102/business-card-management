@@ -1,0 +1,11 @@
+<Context>
+	<Resource name="jdbc/mysqlDB"
+	auth="Container"
+	type="javax.sql.DataSource"
+	username="dev"
+	password="dev"
+	driverClassName="com.mysql.jdbc.Driver"
+	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	url="jdbc:mysql://ec2-15-164-217-254.ap-northeast-2.compute.amazonaws.com:3306/business_card_management"
+	maxActive="500"/>
+</Context>
