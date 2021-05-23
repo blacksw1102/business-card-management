@@ -27,7 +27,7 @@ public class BusinessCardWriteProcessAction implements Action {
 			int result = 0;
 			
 			// ÆÄ¶ó¹ÌÅÍ ²¨³»¼­ ºó °´Ã¼ »ý¼º
-			String saveFolder="/boardUpload";
+			String saveFolder="/ciUpload";
 			String realFolder = request.getServletContext().getRealPath(saveFolder);
 			int fileSize = 5*1024*1024;
 			MultipartRequest multi = new MultipartRequest(
@@ -47,8 +47,17 @@ public class BusinessCardWriteProcessAction implements Action {
 			businessCard.setTel(multi.getParameter("tel"));
 			businessCard.setPhone(multi.getParameter("phone"));
 			businessCard.setAddress(multi.getParameter("address"));
-			businessCard.setCompanyCI(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
+//			String name = (String) multi.getFileNames().nextElement();
+//			String filename = multi.getFilesystemName(name);
+//			String original = multi.getOriginalFileName(name);
+//			String type = multi.getContentType(name);
+//			System.out.println("name : " + name);
+//			System.out.println("filename : " + filename);
+//			System.out.println("original : " + original);
+//			System.out.println("type : " + type);
+			businessCard.setCompanyCI(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
 			businessCard.setUserId(user.getId());
+			
 			
 			// DAO È£Ãâ
 			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();

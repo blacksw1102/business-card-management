@@ -32,6 +32,13 @@ public class BusinessCardVO {
 		this.companyCI = companyCI;
 		this.userId = userId;
 	}
+	
+	@Override
+	public String toString() {
+		return "BusinessCardVO [businessCardNo=" + businessCardNo + ", name=" + name + ", companyName=" + companyName
+				+ ", department=" + department + ", position=" + position + ", email=" + email + ", tel=" + tel
+				+ ", phone=" + phone + ", address=" + address + ", companyCI=" + companyCI + ", userId=" + userId + "]";
+	}
 
 	public int getBusinessCardNo() {
 		return businessCardNo;

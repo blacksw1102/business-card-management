@@ -2,7 +2,10 @@ package com.blacksw.bcm.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import com.blacksw.bcm.util.JdbcUtil;
 import com.blacksw.bcm.vo.BusinessCardVO;
@@ -18,12 +21,16 @@ public class BusinessCardDAO {
 		return instance;
 	}
 
+	// 명함 데이터 삽입
 	public int insertBusinessCard(BusinessCardVO businessCard) {
 		int result = 0;
+		Connection conn = JdbcUtil.getConnection();
+		PreparedStatement pstmt = null;
 
 		try {
-			Connection conn = JdbcUtil.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO business_card(name, company_name, department, position, email, tel, phone, address, company_ci, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("INSERT INTO business_card"
+					+ "(name, company_name, department, position, email, tel, phone, address, company_ci, user_id) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, businessCard.getName());
 			pstmt.setString(2, businessCard.getCompanyName());
 			pstmt.setString(3, businessCard.getDepartment());
@@ -38,9 +45,44 @@ public class BusinessCardDAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 
 		return result;
+	}
+
+	// 명함 데이터 조회
+	public BusinessCardVO selectOneBusinessCard(int businessCardNo) {
+		BusinessCardVO businessCard = null;
+		Connection conn = JdbcUtil.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM business_card WHERE business_card_no = ?");
+			pstmt.setInt(1, businessCardNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				businessCard = new BusinessCardVO();
+				businessCard.setBusinessCardNo(businessCardNo);
+				businessCard.setName(rs.getString("name"));
+				businessCard.setCompanyName(rs.getString("company_name"));
+				businessCard.setDepartment(rs.getString("department"));
+				businessCard.setPosition(rs.getString("position"));
+				businessCard.setEmail(rs.getString("email"));
+				businessCard.setTel(rs.getString("tel"));
+				businessCard.setPhone(rs.getString("phone"));
+				businessCard.setAddress(rs.getString("address"));
+				businessCard.setCompanyCI(rs.getString("company_ci"));
+				businessCard.setUserId(rs.getString("user_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return businessCard;
 	}
 	
 }

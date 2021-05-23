@@ -3,6 +3,7 @@ package com.blacksw.bcm;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,32 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
-import com.blacksw.bcm.action.BusinessCardWriteFormAction;
-import com.blacksw.bcm.action.BusinessCardWriteProcessAction;
+import com.blacksw.bcm.action.BusinessCardDetailProcessAction;
+import com.blacksw.bcm.action.BusinessCardListAction;
 import com.blacksw.bcm.vo.ActionForward;
+import com.blacksw.bcm.vo.BusinessCardVO;
 
-/**
- * Servlet implementation class BusinessCardWrite
- */
-@WebServlet("/businessCardWrite")
-public class BusinessCardWrite extends HttpServlet {
+@WebServlet("/businessCardDetail")
+public class BusinessCardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
 	private ActionForward forward;
 	
-    public BusinessCardWrite() {
+    public BusinessCardDetailServlet() {
         super();
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAction(request, response, new BusinessCardWriteFormAction());
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		setAction(request, response, new BusinessCardDetailProcessAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		setAction(request, response, new BusinessCardWriteProcessAction());
-		forward(request, response);
+		doGet(request, response);
 	}
 	
 	// 서비스 지정
