@@ -80,9 +80,45 @@ public class BusinessCardDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 		
 		return businessCard;
+	}
+
+	// 명함 데이터 수정
+	public int updateBusinessCard(BusinessCardVO businessCard) {
+		int result = 0;
+		Connection conn = JdbcUtil.getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = conn.prepareStatement("UPDATE business_card SET "
+					+ "name = ?, company_name = ?, department = ?, position = ?, email = ?, tel = ?, phone = ?, address = ?, company_ci = ? WHERE user_id = ? AND business_card_no = ?");
+			pstmt.setString(1, businessCard.getName());
+			pstmt.setString(2, businessCard.getCompanyName());
+			pstmt.setString(3, businessCard.getDepartment());
+			pstmt.setString(4, businessCard.getPosition());
+			pstmt.setString(5, businessCard.getEmail());
+			pstmt.setString(6, businessCard.getTel());
+			pstmt.setString(7, businessCard.getPhone());
+			pstmt.setString(8, businessCard.getAddress());
+			pstmt.setString(9, businessCard.getCompanyCI());
+			pstmt.setString(10, businessCard.getUserId());
+			pstmt.setInt(11,  businessCard.getBusinessCardNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+
+		return result;		
 	}
 	
 }

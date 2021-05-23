@@ -13,14 +13,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<span><%= businessCard.getName() %></span><br>
-	<span><%= businessCard.getCompanyName() %></span><br>
-	<span><%= businessCard.getDepartment() %></span><br>
-	<span><%= businessCard.getPosition() %></span><br>
-	<span><%= businessCard.getEmail() %></span><br>
-	<span><%= businessCard.getTel() %></span><br>
-	<span><%= businessCard.getPhone() %></span><br>
-	<span><%= businessCard.getAddress() %></span><br>
-	<span><img src="/ciUpload/<%= businessCard.getCompanyCI() %>"/></span><br>
+	이름 : <span><%= businessCard.getName() %></span><br>
+	회사명 : <span><%= businessCard.getCompanyName() %></span><br>
+	부서 : <span><%= businessCard.getDepartment() %></span><br>
+	직책 : <span><%= businessCard.getPosition() %></span><br>
+	이메일 : <span><%= businessCard.getEmail() %></span><br>
+	유선전화 : <span><%= businessCard.getTel() %></span><br>
+	핸드폰 : <span><%= businessCard.getPhone() %></span><br>
+	주소 : <span><%= businessCard.getAddress() %></span><br>
+	회사 CI : <span><img src="/ciUpload/<%= businessCard.getCompanyCI() %>"/></span><br>
 </body>
 </html>

@@ -5,20 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.blacksw.bcm.dao.BusinessCardDAO;
-import com.blacksw.bcm.dao.UserDAO;
 import com.blacksw.bcm.vo.ActionForward;
 import com.blacksw.bcm.vo.BusinessCardVO;
-import com.blacksw.bcm.vo.LoginVO;
-import com.blacksw.bcm.vo.UserVO;
 
-public class BusinessCardDetailProcessAction implements Action {
+public class BusinessCardUpdateFormAction implements Action {
 
 	private ActionForward forward;
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginUser") == null ) {
+		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("/signin", true);
 		} else {
 			int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
@@ -27,7 +25,7 @@ public class BusinessCardDetailProcessAction implements Action {
 			
 			if(businessCard != null) {
 				request.setAttribute("businessCard", businessCard);
-				forward = new ActionForward("/businessCard/businessCardDetail.jsp", false);
+				forward = new ActionForward("/businessCard/businessCardUpdate.jsp", false);
 			} else {
 				// 명함을 못찾았을 경우
 			}
