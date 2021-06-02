@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
+import com.blacksw.bcm.action.BusinessCardDeleteProcessAction;
 import com.blacksw.bcm.action.BusinessCardDetailProcessAction;
 import com.blacksw.bcm.action.BusinessCardListAction;
 import com.blacksw.bcm.action.BusinessCardUpdateFormAction;
@@ -28,16 +29,13 @@ public class BusinessCardDeleteServlet extends HttpServlet {
         super();
     }
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		setAction(request, response, new BusinessCardUpdateFormAction());
-		forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		setAction(request, response, new BusinessCardUpdateProcessAction());
+		setAction(request, response, new BusinessCardDeleteProcessAction());
 		forward(request, response);
 	}
 	

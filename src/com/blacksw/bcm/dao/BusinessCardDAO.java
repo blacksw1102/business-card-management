@@ -189,5 +189,26 @@ public class BusinessCardDAO {
 		
 		return count;
 	}
+
+	public int deleteBusinessCard(int businessCardNo, String userId) {
+		int result = 0;
+		Connection conn = JdbcUtil.getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = conn.prepareStatement("DELETE FROM business_card WHERE business_card_no = ? AND user_id = ?");
+			pstmt.setInt(1, businessCardNo);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+
+		return result;
+	}
 	
 }
