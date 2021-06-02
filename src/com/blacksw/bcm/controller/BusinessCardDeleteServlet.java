@@ -19,7 +19,7 @@ import com.blacksw.bcm.action.BusinessCardUpdateProcessAction;
 import com.blacksw.bcm.vo.ActionForward;
 import com.blacksw.bcm.vo.BusinessCardVO;
 
-@WebServlet("/businessCardUpdate")
+@WebServlet("/businessCardDelete")
 public class BusinessCardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

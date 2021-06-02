@@ -25,7 +25,11 @@ public class BusinessCardWriteProcessAction implements Action {
 		} else {
 			UserVO user = (UserVO) session.getAttribute("loginUser");
 			int result = 0;
+			/* */
 			
+			System.out.println("file path : " + request.getParameter("companyCI"));
+			
+			/* */
 			// ÆÄ¶ó¹ÌÅÍ ²¨³»¼­ ºó °´Ã¼ »ý¼º
 			String saveFolder="/ciUpload";
 			String realFolder = request.getServletContext().getRealPath(saveFolder);
