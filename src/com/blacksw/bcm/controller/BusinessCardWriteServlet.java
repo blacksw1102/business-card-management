@@ -1,9 +1,8 @@
-package com.blacksw.bcm;
+package com.blacksw.bcm.controller;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,28 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
-import com.blacksw.bcm.action.SignupFormAction;
-import com.blacksw.bcm.action.SignupProcessAction;
+import com.blacksw.bcm.action.BusinessCardWriteFormAction;
+import com.blacksw.bcm.action.BusinessCardWriteProcessAction;
 import com.blacksw.bcm.vo.ActionForward;
 
-@WebServlet("/signup")
-public class SignupServlet extends HttpServlet {
+/**
+ * Servlet implementation class BusinessCardWrite
+ */
+@WebServlet("/businessCardWrite")
+public class BusinessCardWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private ActionForward forward = null;
-
-    public SignupServlet() {
+       
+	private ActionForward forward;
+	
+    public BusinessCardWriteServlet() {
         super();
     }
-    
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAction(request, response, new SignupFormAction());
+		setAction(request, response, new BusinessCardWriteFormAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		setAction(request, response, new SignupProcessAction());
+		setAction(request, response, new BusinessCardWriteProcessAction());
 		forward(request, response);
 	}
 	

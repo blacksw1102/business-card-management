@@ -10,6 +10,11 @@ public class LoginVO {
 		this.id = id;
 		this.pw = pw;
 	}
+	
+	@Override
+	public String toString() {
+		return "LoginVO [id=" + id + ", pw=" + pw + "]";
+	}
 
 	public String getId() {
 		return id;

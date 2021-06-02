@@ -12,6 +12,11 @@ public class UserVO {
 		this.pw = pw;
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", pw=" + pw + ", name=" + name + "]";
+	}
 
 	public String getId() {
 		return id;

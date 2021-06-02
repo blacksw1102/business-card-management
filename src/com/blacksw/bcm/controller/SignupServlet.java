@@ -1,4 +1,4 @@
-package com.blacksw.bcm;
+package com.blacksw.bcm.controller;
 
 import java.io.IOException;
 
@@ -11,30 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
-import com.blacksw.bcm.action.BusinessCardDetailProcessAction;
-import com.blacksw.bcm.action.BusinessCardListAction;
+import com.blacksw.bcm.action.SignupFormAction;
+import com.blacksw.bcm.action.SignupProcessAction;
 import com.blacksw.bcm.vo.ActionForward;
-import com.blacksw.bcm.vo.BusinessCardVO;
 
-@WebServlet("/businessCardDetail")
-public class BusinessCardDetailServlet extends HttpServlet {
+@WebServlet("/signup")
+public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private ActionForward forward;
-	
-    public BusinessCardDetailServlet() {
+
+	private ActionForward forward = null;
+
+    public SignupServlet() {
         super();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		setAction(request, response, new BusinessCardDetailProcessAction());
+		setAction(request, response, new SignupFormAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		setAction(request, response, new SignupProcessAction());
+		forward(request, response);
 	}
 	
 	// 서비스 지정

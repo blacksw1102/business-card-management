@@ -25,7 +25,7 @@ public class SigninProcessAction implements Action {
 		if(user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", user);
-			forward = new ActionForward("/businessCardList", true);
+			forward = new ActionForward("/businessCardList?page=1", true);
 		} else {
 			forward = new ActionForward("/signin", true);
 		}

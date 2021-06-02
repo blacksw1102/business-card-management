@@ -1,4 +1,4 @@
-package com.blacksw.bcm;
+package com.blacksw.bcm.controller;
 
 import java.io.IOException;
 
@@ -11,21 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
+import com.blacksw.bcm.action.BusinessCardDetailProcessAction;
 import com.blacksw.bcm.action.BusinessCardListAction;
 import com.blacksw.bcm.vo.ActionForward;
+import com.blacksw.bcm.vo.BusinessCardVO;
 
-@WebServlet("/businessCardList")
-public class BusinessCardListServlet extends HttpServlet {
+@WebServlet("/businessCardDetail")
+public class BusinessCardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ActionForward forward;
 	
-    public BusinessCardListServlet() {
+    public BusinessCardDetailServlet() {
         super();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAction(request, response, new BusinessCardListAction());
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		setAction(request, response, new BusinessCardDetailProcessAction());
 		forward(request, response);
 	}
 

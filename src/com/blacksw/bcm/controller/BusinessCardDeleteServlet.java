@@ -1,8 +1,9 @@
-package com.blacksw.bcm;
+package com.blacksw.bcm.controller;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,31 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
-import com.blacksw.bcm.action.BusinessCardWriteFormAction;
-import com.blacksw.bcm.action.BusinessCardWriteProcessAction;
+import com.blacksw.bcm.action.BusinessCardDetailProcessAction;
+import com.blacksw.bcm.action.BusinessCardListAction;
+import com.blacksw.bcm.action.BusinessCardUpdateFormAction;
+import com.blacksw.bcm.action.BusinessCardUpdateProcessAction;
 import com.blacksw.bcm.vo.ActionForward;
+import com.blacksw.bcm.vo.BusinessCardVO;
 
-/**
- * Servlet implementation class BusinessCardWrite
- */
-@WebServlet("/businessCardWrite")
-public class BusinessCardWriteServlet extends HttpServlet {
+@WebServlet("/businessCardUpdate")
+public class BusinessCardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
 	private ActionForward forward;
 	
-    public BusinessCardWriteServlet() {
+    public BusinessCardDeleteServlet() {
         super();
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAction(request, response, new BusinessCardWriteFormAction());
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		setAction(request, response, new BusinessCardUpdateFormAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		setAction(request, response, new BusinessCardWriteProcessAction());
+		setAction(request, response, new BusinessCardUpdateProcessAction());
 		forward(request, response);
 	}
 	

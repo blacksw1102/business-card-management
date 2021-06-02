@@ -1,4 +1,4 @@
-package com.blacksw.bcm;
+package com.blacksw.bcm.controller;
 
 import java.io.IOException;
 
@@ -11,31 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
-import com.blacksw.bcm.action.SigninFormAction;
-import com.blacksw.bcm.action.SigninProcessAction;
-import com.blacksw.bcm.action.SignupFormAction;
+import com.blacksw.bcm.action.BusinessCardListAction;
 import com.blacksw.bcm.vo.ActionForward;
-import com.sun.glass.ui.Application;
 
-@WebServlet("/signin")
-public class SigInServlet extends HttpServlet {
+@WebServlet("/businessCardList")
+public class BusinessCardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ActionForward forward = null;
+	private ActionForward forward;
 	
-    public SigInServlet() {
+    public BusinessCardListServlet() {
         super();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAction(request, response, new SigninFormAction());
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		setAction(request, response, new BusinessCardListAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		setAction(request, response, new SigninProcessAction());
-		forward(request, response);
+		doGet(request, response);
 	}
 	
 	// 서비스 지정
@@ -56,5 +53,5 @@ public class SigInServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 	}
-	
+
 }
