@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/businessCardWrite" method="post" enctype="multipart/form-data">
+	<form action="/businessCardWrite" method="post">
 		이름 : <input type="text" name="name" /><br>
 		회사명 : <input type="text" name="companyName" /><br>
 		부서 : <input type="text" name="department" /><br>

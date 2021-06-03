@@ -25,12 +25,10 @@ public class BusinessCardWriteProcessAction implements Action {
 		} else {
 			UserVO user = (UserVO) session.getAttribute("loginUser");
 			int result = 0;
-			/* */
 			
-			System.out.println("file path : " + request.getParameter("companyCI"));
-			
-			/* */
+			/*
 			// 파라미터 꺼내서 빈 객체 생성
+			/*
 			String saveFolder="/ciUpload";
 			String realFolder = request.getServletContext().getRealPath(saveFolder);
 			int fileSize = 5*1024*1024;
@@ -41,27 +39,19 @@ public class BusinessCardWriteProcessAction implements Action {
 					"UTF-8",
 					new DefaultFileRenamePolicy()
 			);
+			*/
 			
 			BusinessCardVO businessCard = new BusinessCardVO();
-			businessCard.setName(multi.getParameter("name"));
-			businessCard.setCompanyName(multi.getParameter("companyName"));
-			businessCard.setDepartment(multi.getParameter("department"));
-			businessCard.setPosition(multi.getParameter("position"));
-			businessCard.setEmail(multi.getParameter("email"));
-			businessCard.setTel(multi.getParameter("tel"));
-			businessCard.setPhone(multi.getParameter("phone"));
-			businessCard.setAddress(multi.getParameter("address"));
-//			String name = (String) multi.getFileNames().nextElement();
-//			String filename = multi.getFilesystemName(name);
-//			String original = multi.getOriginalFileName(name);
-//			String type = multi.getContentType(name);
-//			System.out.println("name : " + name);
-//			System.out.println("filename : " + filename);
-//			System.out.println("original : " + original);
-//			System.out.println("type : " + type);
-			businessCard.setCompanyCI(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
+			businessCard.setName(request.getParameter("name"));
+			businessCard.setCompanyName(request.getParameter("companyName"));
+			businessCard.setDepartment(request.getParameter("department"));
+			businessCard.setPosition(request.getParameter("position"));
+			businessCard.setEmail(request.getParameter("email"));
+			businessCard.setTel(request.getParameter("tel"));
+			businessCard.setPhone(request.getParameter("phone"));
+			businessCard.setAddress(request.getParameter("address"));
+			businessCard.setCompanyCI(request.getParameter("companyCI"));
 			businessCard.setUserId(user.getId());
-			
 			
 			// DAO 호출
 			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
@@ -69,12 +59,11 @@ public class BusinessCardWriteProcessAction implements Action {
 			
 			// 포워드 반환
 			if(result != 0) {
-				forward = new ActionForward("/businessCardList", true);
+				forward = new ActionForward("/businessCardList?page=1", true);
 			} else {
 				forward = new ActionForward("/businessCardWrite", true);
 			}
 		}
-		
 		return forward;
 	}
 
