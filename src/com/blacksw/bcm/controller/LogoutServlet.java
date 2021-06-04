@@ -11,33 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blacksw.bcm.action.Action;
+import com.blacksw.bcm.action.LogoutProcessAction;
 import com.blacksw.bcm.action.SigninFormAction;
 import com.blacksw.bcm.action.SigninProcessAction;
 import com.blacksw.bcm.action.SignupFormAction;
 import com.blacksw.bcm.vo.ActionForward;
 import com.sun.glass.ui.Application;
 
-@WebServlet(urlPatterns = {"/", "/signin"})
-public class SigInServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ActionForward forward = null;
 	
-    public SigInServlet() {
+    public LogoutServlet() {
         super();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SignInServlet doGet 진입");
-		setAction(request, response, new SigninFormAction());
-		forward(request, response);
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SignInServlet doPost 진입");
+		System.out.println("LogoutServlet doPost 진입");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		setAction(request, response, new SigninProcessAction());
+		setAction(request, response, new LogoutProcessAction());
 		forward(request, response);
 	}
 	

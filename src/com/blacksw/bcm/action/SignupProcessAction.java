@@ -24,9 +24,6 @@ public class SignupProcessAction implements Action {
 		UserDAO userDAO = UserDAO.getInstance();
 		result = userDAO.insertUser(user);
 		
-		// 애트리뷰트에 결과값 담음 & 포워드 지정
-		// null
-		
 		// 포워드 반환
 		if(result != 0) {
 			forward = new ActionForward("/signin", true);

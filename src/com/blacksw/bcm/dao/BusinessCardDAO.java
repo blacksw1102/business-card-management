@@ -134,8 +134,6 @@ public class BusinessCardDAO {
 			keyword = "";
 		}
 		
-		System.out.println(keyword);
-		
 		try {
 			pstmt = conn.prepareStatement("SELECT * FROM business_card WHERE name LIKE '%' ? '%' ORDER BY business_card_no DESC LIMIT ?, 10");
 			pstmt.setString(1, keyword);

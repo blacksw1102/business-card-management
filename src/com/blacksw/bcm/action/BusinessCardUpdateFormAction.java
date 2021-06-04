@@ -27,7 +27,7 @@ public class BusinessCardUpdateFormAction implements Action {
 			
 			if(businessCard != null) {
 				request.setAttribute("businessCard", businessCard);
-				forward = new ActionForward("/businessCard/businessCardUpdate.jsp", false);
+				forward = new ActionForward("/WEB-INF/view/businessCard/businessCardUpdate.jsp", false);
 			}
 		}
 		

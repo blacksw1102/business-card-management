@@ -29,7 +29,7 @@ public class BusinessCardDetailProcessAction implements Action {
 			
 			if(businessCard != null) {
 				request.setAttribute("businessCard", businessCard);
-				forward = new ActionForward("/businessCard/businessCardDetail.jsp", false);
+				forward = new ActionForward("/WEB-INF/view/businessCard/businessCardDetail.jsp", false);
 			}
 		}
 		

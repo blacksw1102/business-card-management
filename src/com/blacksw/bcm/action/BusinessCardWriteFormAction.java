@@ -15,7 +15,7 @@ public class BusinessCardWriteFormAction implements Action {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") != null) {
-			forward = new ActionForward("/businessCard/businessCardWrite.jsp", false);
+			forward = new ActionForward("/WEB-INF/view/businessCard/businessCardWrite.jsp", false);
 		} else {
 			forward = new ActionForward("/signin", true);
 		}

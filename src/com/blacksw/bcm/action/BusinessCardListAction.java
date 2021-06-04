@@ -37,7 +37,7 @@ public class BusinessCardListAction implements Action {
 			request.setAttribute("businessCardList", businessCardList);
 			request.setAttribute("pageInfo", pageInfo);
 			
-			forward = new ActionForward("/businessCard/businessCardList.jsp", false);
+			forward = new ActionForward("/WEB-INF/view/businessCard/businessCardList.jsp", false);
 		}
 		
 		return forward;

@@ -14,7 +14,7 @@ public class SigninFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null) {
-			forward = new ActionForward("user/signin.jsp", false);
+			forward = new ActionForward("/WEB-INF/view/user/signin.jsp", false);
 		} else {
 			forward = new ActionForward("/businessCardList?page=1", true);
 		}
