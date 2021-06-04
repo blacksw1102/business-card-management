@@ -52,7 +52,12 @@
 		</div>
 		<div>
 			<a href="/businessCardUpdate?businessCardNo=<%=businessCard.getBusinessCardNo() %>">명함 수정</a>
-			<a href="/businessCardDelete?businessCardNo=<%=businessCard.getBusinessCardNo() %>"">명함 삭제</a>
+			<form action="/businessCardDelete" method="post">
+				<input type="hidden" name="businessCardNo" value="<%= businessCard.getBusinessCardNo() %>"/>
+				<input type="hidden" name="userId" value="<%= businessCard.getUserId() %>"/>
+				<input type="hidden" name="companyCI" value="<%= businessCard.getCompanyCI() %>"/>
+				<input type="submit" value="명함 삭제"/>
+			</form>
 		</div>	
 	</div>
 </body>

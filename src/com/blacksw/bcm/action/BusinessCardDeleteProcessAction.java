@@ -1,5 +1,7 @@
 package com.blacksw.bcm.action;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,33 +21,45 @@ public class BusinessCardDeleteProcessAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		HttpSession session = request.getSession();
-		UserVO user = (UserVO) session.getAttribute("loginUser");
-
 		// 로그인 검증
-		if(user == null) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser") == null) {
 			return forward = new ActionForward("/signin", true);
 		} 
 		
-		if(user.getId().equals(request.getParameter("userId")) == false) {
-			// 수정자와 작성자가 동일하지 않을 경우
+		String uploadPath = "C:\\Users\\blacksw\\Desktop\\eclipse-workspace\\client-test2\\BusinessCardManagement\\WebContent\\upload\\";
+		
+		UserVO user = (UserVO) session.getAttribute("loginUser");
+		String userId = request.getParameter("userId");
+		int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
+		String companyCI = request.getParameter("companyCI");
+		int result = 0;
+		
+		// 수정자와 작성자가 동일하지 않을 경우
+		if(!user.getId().equals(userId)) {
+			return forward = new ActionForward("/businessCardDetail?businessCardNo=" + businessCardNo, true);
+		} 
 
+		// DAO 호출
+		BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
+		result = businessCardDAO.deleteBusinessCard(businessCardNo, user.getId());
+		
+		// /upload 에서 파일 제거
+		File uploadfile = new File(uploadPath + companyCI);
+		if(uploadfile.exists()) {
+			uploadfile.delete();
+			System.out.println("파일 (" + companyCI + ") 삭제 완료");
 		} else {
-			// 수정자와 작성자가 동일한 경우
-			// 파라미터 꺼내서 빈 객체 생성
-			int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
-			int result = 0;
-
-			// DAO 호출
-			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
-			result = businessCardDAO.deleteBusinessCard(businessCardNo, user.getId());
-			
-			// 포워드 반환
-			if(result != 0) {
-				forward = new ActionForward("/businessCardListl?page=1", true);
-			} else {
-				forward = new ActionForward("/businessCardDetail?businessCardNo=" + businessCardNo, true);
-			}
+			System.out.println("파일 (" + companyCI +  ") 삭제 실패");
+		}
+		
+		// 포워드 반환
+		if(result != 0) {
+			forward = new ActionForward("/businessCardList?page=1", true);
+			System.out.println("BussinessCard 삭제 완료");
+		} else {
+			forward = new ActionForward("/businessCardDetail?businessCardNo=" + businessCardNo, true);
+			System.out.println("BussinessCard 삭제 실패");
 		}
 		
 		return forward;
