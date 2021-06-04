@@ -32,7 +32,7 @@ public class BusinessCardDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	doPost(request, response);
 	}
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -51,7 +51,9 @@ public class BusinessCardDeleteServlet extends HttpServlet {
 	
 	// Æ÷¿öµù
 	public void forward(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		if(forward.isRedirect()) {
+		if(forward == null) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		} else if(forward.isRedirect()) {
 			response.sendRedirect(forward.getPath());
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());

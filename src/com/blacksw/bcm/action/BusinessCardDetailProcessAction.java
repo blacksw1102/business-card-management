@@ -13,14 +13,16 @@ import com.blacksw.bcm.vo.UserVO;
 
 public class BusinessCardDetailProcessAction implements Action {
 
-	private ActionForward forward;
+	private ActionForward forward = null;
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null ) {
 			forward = new ActionForward("/signin", true);
-		} else {
+		}
+		
+		if(request.getParameter("businessCardNo") != null) {
 			int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
 			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
 			BusinessCardVO businessCard = businessCardDAO.selectOneBusinessCard(businessCardNo);
@@ -28,8 +30,6 @@ public class BusinessCardDetailProcessAction implements Action {
 			if(businessCard != null) {
 				request.setAttribute("businessCard", businessCard);
 				forward = new ActionForward("/businessCard/businessCardDetail.jsp", false);
-			} else {
-				// 명함을 못찾았을 경우
 			}
 		}
 		

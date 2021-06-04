@@ -27,8 +27,11 @@ public class BusinessCardDeleteProcessAction implements Action {
 			return forward = new ActionForward("/signin", true);
 		} 
 		
+		if(request.getParameter("userId") == null || request.getParameter("businessCardNo") == null || request.getParameter("companyCI") == null) {
+			return null;
+		}
+
 		String uploadPath = "C:\\Users\\blacksw\\Desktop\\eclipse-workspace\\client-test2\\BusinessCardManagement\\WebContent\\upload\\";
-		
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		String userId = request.getParameter("userId");
 		int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));

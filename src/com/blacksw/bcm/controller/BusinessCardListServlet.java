@@ -46,7 +46,9 @@ public class BusinessCardListServlet extends HttpServlet {
 	
 	// Æ÷¿öµù
 	public void forward(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		if(forward.isRedirect()) {
+		if(forward == null) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		} else if(forward.isRedirect()) {
 			response.sendRedirect(forward.getPath());
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());

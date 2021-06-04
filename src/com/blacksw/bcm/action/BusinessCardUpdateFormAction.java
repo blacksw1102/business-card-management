@@ -18,7 +18,9 @@ public class BusinessCardUpdateFormAction implements Action {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("/signin", true);
-		} else {
+		}
+		
+		if(request.getParameter("businessCardNo") != null) {
 			int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
 			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
 			BusinessCardVO businessCard = businessCardDAO.selectOneBusinessCard(businessCardNo);
@@ -26,8 +28,6 @@ public class BusinessCardUpdateFormAction implements Action {
 			if(businessCard != null) {
 				request.setAttribute("businessCard", businessCard);
 				forward = new ActionForward("/businessCard/businessCardUpdate.jsp", false);
-			} else {
-				// 명함을 못찾았을 경우
 			}
 		}
 		

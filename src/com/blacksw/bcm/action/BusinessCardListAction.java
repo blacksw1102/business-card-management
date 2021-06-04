@@ -22,8 +22,15 @@ public class BusinessCardListAction implements Action {
 		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("/signin", true);
 		} else {
-			int page = Integer.parseInt(request.getParameter("page"));
 			String keyword = request.getParameter("keyword");
+			int page;
+			
+			// 페이지 파라미터 초기화
+			if(request.getParameter("page") == null) {
+				page = 1;
+			} else {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
 			
 			ArrayList<BusinessCardVO> businessCardList = getBusinessCardList(page, keyword);
 			PageInfoVO pageInfo = getPageInfo(page);

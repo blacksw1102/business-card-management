@@ -7,7 +7,6 @@
 <title>ERROR PAGE</title>
 </head>
 <body>
-    <h1>에러가 발생했습니다.</h1>
     <c:if test="${requestScope['javax.servlet.error.status_code'] == 400}">
         <p>400 에러가 발생했습니다.</p>
     </c:if>
@@ -15,7 +14,7 @@
         <p>403 에러가 발생했습니다.</p>
     </c:if>
     <c:if test="${requestScope['javax.servlet.error.status_code'] == 404}">
-        <p>404 에러가 발생했습니다.</p>
+        <p>존재하지 않는 페이지입니다.</p>
     </c:if>
     <c:if test="${requestScope['javax.servlet.error.status_code'] == 405}">
         <p>405 에러가 발생했습니다.</p>
