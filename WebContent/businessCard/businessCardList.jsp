@@ -21,12 +21,10 @@
 </head>
 <body>
 	<div>
-		<% if(user != null) { %>
-			<%= user.getName() %> 님 환영합니다.
-		<% } %>
-		
-		<br><br>
-		
+		<a href="/businessCardWrite">명함등록</a>
+		<a href="/logout">로그아웃</a>
+	</div>
+	<div>		
 		<% if(businessCardList.size() <= 0) {%>
 			검색 결과가 없습니다.
 		<% } else {%>

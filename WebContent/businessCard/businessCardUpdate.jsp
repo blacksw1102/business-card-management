@@ -29,5 +29,8 @@
 		<span><input type="file" name="companyCI"/></span><br>
 		<input type="submit" value="명함 수정"/>
 	</form>
+	<div>
+		<button onclick="history.back()">취소</button>
+	</div>
 </body>
 </html>

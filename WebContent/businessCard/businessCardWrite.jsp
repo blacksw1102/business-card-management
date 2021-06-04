@@ -19,5 +19,8 @@
 		회사 CI : <input type="file" name="companyCI"/><br>
 		<input type="submit" value="명함 등록" />
 	</form>
+	<div>
+		<button onclick="history.back()">취소</button>
+	</div>
 </body>
 </html>

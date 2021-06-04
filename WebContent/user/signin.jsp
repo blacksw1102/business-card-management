@@ -12,5 +12,8 @@
 		<input type="password" name="pw" value="admin"/><br>
 		<input type="submit" value="로그인"/>
 	</form>
+	<div>
+		<a href="/signup">회원가입</a>
+	</div>
 </body>
 </html>

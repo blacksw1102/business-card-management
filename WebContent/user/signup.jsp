@@ -13,5 +13,8 @@
 		<input type="text" name="name" value="홍길동"/><br>
 		<input type="submit" value="회원가입"/>
 	</form>
+	<div>
+		<a href="/signin">로그인</a>
+	</div>
 </body>
 </html>
