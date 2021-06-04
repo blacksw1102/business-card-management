@@ -1,5 +1,8 @@
 package com.blacksw.bcm.action;
 
+import java.util.Enumeration;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +14,8 @@ import com.blacksw.bcm.vo.BusinessCardVO;
 import com.blacksw.bcm.vo.UserVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import comblacksw.bcm.extra.RandomFileNamePolicy;
 
 public class BusinessCardWriteProcessAction implements Action {
 	
@@ -26,31 +31,31 @@ public class BusinessCardWriteProcessAction implements Action {
 			UserVO user = (UserVO) session.getAttribute("loginUser");
 			int result = 0;
 			
-			/*
-			// ÆÄ¶ó¹ÌÅÍ ²¨³»¼­ ºó °´Ã¼ »ý¼º
-			/*
-			String saveFolder="/ciUpload";
-			String realFolder = request.getServletContext().getRealPath(saveFolder);
+			// MultipartRequest °´Ã¼ ÃÊ±âÈ­
+			String uploadPath = "C:\\Users\\blacksw\\Desktop\\eclipse-workspace\\client-test2\\BusinessCardManagement\\WebContent\\upload";
 			int fileSize = 5*1024*1024;
 			MultipartRequest multi = new MultipartRequest(
 					request,
-					realFolder,
+					uploadPath,
 					fileSize,
 					"UTF-8",
-					new DefaultFileRenamePolicy()
+					new RandomFileNamePolicy()
 			);
-			*/
 			
+			Enumeration<String> files = multi.getFileNames();
+			String file =  files.nextElement();
+			
+			// ºó °´Ã¼ »ý¼º
 			BusinessCardVO businessCard = new BusinessCardVO();
-			businessCard.setName(request.getParameter("name"));
-			businessCard.setCompanyName(request.getParameter("companyName"));
-			businessCard.setDepartment(request.getParameter("department"));
-			businessCard.setPosition(request.getParameter("position"));
-			businessCard.setEmail(request.getParameter("email"));
-			businessCard.setTel(request.getParameter("tel"));
-			businessCard.setPhone(request.getParameter("phone"));
-			businessCard.setAddress(request.getParameter("address"));
-			businessCard.setCompanyCI(request.getParameter("companyCI"));
+			businessCard.setName(multi.getParameter("name"));
+			businessCard.setCompanyName(multi.getParameter("companyName"));
+			businessCard.setDepartment(multi.getParameter("department"));
+			businessCard.setPosition(multi.getParameter("position"));
+			businessCard.setEmail(multi.getParameter("email"));
+			businessCard.setTel(multi.getParameter("tel"));
+			businessCard.setPhone(multi.getParameter("phone"));
+			businessCard.setAddress(multi.getParameter("address"));
+			businessCard.setCompanyCI(multi.getFilesystemName(file));
 			businessCard.setUserId(user.getId());
 			
 			// DAO È£Ãâ
