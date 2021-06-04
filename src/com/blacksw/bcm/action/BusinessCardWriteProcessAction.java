@@ -33,7 +33,7 @@ public class BusinessCardWriteProcessAction implements Action {
 			int result = 0;
 			
 			// MultipartRequest ∞¥√º √ ±‚»≠
-			String uploadPath = request.getServletContext().getInitParameter("file-upload-ubuntu");
+			String uploadPath = request.getServletContext().getRealPath("/upload");
 			int fileSize = 5*1024*1024;
 			MultipartRequest multi = new MultipartRequest(
 					request,

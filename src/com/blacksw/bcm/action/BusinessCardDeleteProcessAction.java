@@ -31,7 +31,7 @@ public class BusinessCardDeleteProcessAction implements Action {
 			return null;
 		}
 
-		String uploadPath = request.getServletContext().getInitParameter("file-upload-ubuntu");
+		String uploadPath = request.getServletContext().getRealPath("/upload");
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		String userId = request.getParameter("userId");
 		int businessCardNo = Integer.parseInt(request.getParameter("businessCardNo"));
@@ -48,7 +48,7 @@ public class BusinessCardDeleteProcessAction implements Action {
 		result = businessCardDAO.deleteBusinessCard(businessCardNo, user.getId());
 		
 		// /upload 에서 파일 제거
-		File uploadfile = new File(uploadPath + companyCI);
+		File uploadfile = new File(uploadPath + File.separator + companyCI);
 		if(uploadfile.exists()) {
 			uploadfile.delete();
 			System.out.println("파일 (" + companyCI + ") 삭제 완료");

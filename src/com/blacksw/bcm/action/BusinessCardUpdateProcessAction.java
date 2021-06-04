@@ -34,7 +34,8 @@ public class BusinessCardUpdateProcessAction implements Action {
 		int result = 0;
 		
 		// MultipartRequest 객체 초기화
-		String uploadPath = request.getServletContext().getInitParameter("file-upload-ubuntu");
+		String uploadPath = request.getServletContext().getRealPath("/upload");
+		System.out.println("upload path : " + uploadPath);
 		int fileSize = 5*1024*1024;
 		MultipartRequest multi = new MultipartRequest(
 				request,
@@ -75,7 +76,7 @@ public class BusinessCardUpdateProcessAction implements Action {
 		System.out.println("oldCompanyCI : " + multi.getParameter("oldCompanyCI"));
 		System.out.println("newCompanyCI : " + multi.getFilesystemName(file));
 		if(!multi.getParameter("oldCompanyCI").equals(multi.getFilesystemName(file))) {
-			File uploadfile = new File(uploadPath + multi.getParameter("oldCompanyCI"));
+			File uploadfile = new File(uploadPath + File.separator + multi.getParameter("oldCompanyCI"));
 			if(uploadfile.exists()) {
 				uploadfile.delete();
 				System.out.println("파일 삭제 완료");

@@ -11,18 +11,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <context-param>
-  	<description>Location to store uploaded file in windows</description>
-  	<param-name>file-upload-windows</param-name>
-  	<param-value>C:\Users\blacksw\Desktop\eclipse-workspace\client-test2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BusinessCardManagement\upload</param-value>
-  </context-param>
-  
-  <context-param>
-  	<description>Location to store uploaded file in ubuntu</description>
-  	<param-name>file-upload-ubuntu</param-name>
-  	<param-value>/var/webapps/upload/</param-value>
-  </context-param>
-  
   <error-page>
   	<error-code>400</error-code>
   	<location>/error.jsp</location>

@@ -17,7 +17,7 @@ import com.blacksw.bcm.action.SignupFormAction;
 import com.blacksw.bcm.vo.ActionForward;
 import com.sun.glass.ui.Application;
 
-@WebServlet(urlPatterns = {"/", "/signin"})
+@WebServlet("/signin")
 public class SigInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
