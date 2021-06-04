@@ -24,6 +24,7 @@ public class BusinessCardWriteProcessAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		// 로그인 검증
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("/signin", true);

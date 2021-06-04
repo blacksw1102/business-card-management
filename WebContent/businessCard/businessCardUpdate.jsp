@@ -25,7 +25,7 @@
 		핸드폰 : <input type="text" name="phone" value="<%= businessCard.getPhone() %>"/><br>
 		주소 : <input type="text" name="address" value="<%= businessCard.getAddress() %>"/><br>		
 		회사 CI : 
-		<span><img src="/ciUpload/<%= businessCard.getCompanyCI() %>"/></span><br>
+		<span><img src="/upload/<%= businessCard.getCompanyCI() %>"/></span><br> 
 		<span><input type="file" name="companyCI"/></span><br>
 		<input type="submit" value="명함 수정"/>
 	</form>

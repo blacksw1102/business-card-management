@@ -47,7 +47,7 @@
 			</div>
 			<div>
 				<span>회사 CI : </span>
-				<span><img src="<%= businessCard.getCompanyCI() %>"/></span>
+				<span><img src="/upload/<%= businessCard.getCompanyCI() %>"/></span>
 			</div>
 		</div>
 		<div>
