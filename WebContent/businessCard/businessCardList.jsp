@@ -27,13 +27,14 @@
 		
 		<br><br>
 		
+		<% if(businessCardList.size() <= 0) {%>
+			검색 결과가 없습니다.
+		<% } else {%>
 		<%= businessCardList.toString() %>
-		
-		<br><br>
-		
+		<% } %>
+
+		<br><br>		
 		<%= pageInfo.toString() %>
-		
 	</div>
-	businessCardList.jsp
 </body>
 </html>

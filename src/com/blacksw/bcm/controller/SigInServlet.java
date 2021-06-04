@@ -28,11 +28,13 @@ public class SigInServlet extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SignInServlet doGet 진입");
 		setAction(request, response, new SigninFormAction());
 		forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SignInServlet doPost 진입");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		setAction(request, response, new SigninProcessAction());

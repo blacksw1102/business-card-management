@@ -16,7 +16,7 @@ public class SigninFormAction implements Action {
 		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("user/signin.jsp", false);
 		} else {
-			forward = new ActionForward("/businessCardList", true);
+			forward = new ActionForward("/businessCardList?page=1", true);
 		}
 		return forward;
 	}

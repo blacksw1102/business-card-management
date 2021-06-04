@@ -24,8 +24,12 @@ public class BusinessCardListAction implements Action {
 		} else {
 			int page = Integer.parseInt(request.getParameter("page"));
 			String keyword = request.getParameter("keyword");
-			request.setAttribute("businessCardList", getBusinessCardList(page, keyword));
-			request.setAttribute("pageInfo", getPageInfo(page));			
+			
+			ArrayList<BusinessCardVO> businessCardList = getBusinessCardList(page, keyword);
+			PageInfoVO pageInfo = getPageInfo(page);
+			request.setAttribute("businessCardList", businessCardList);
+			request.setAttribute("pageInfo", pageInfo);
+			
 			forward = new ActionForward("/businessCard/businessCardList.jsp", false);
 		}
 		
