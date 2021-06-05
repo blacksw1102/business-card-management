@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
+	.navbar {
+		padding : 45px;
+		background-color : white;	
+	}
+
 	.navbar-brand {
 		font-size: 30px;
 		font-weight: bold;

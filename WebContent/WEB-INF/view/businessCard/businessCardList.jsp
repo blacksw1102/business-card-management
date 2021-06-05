@@ -27,11 +27,6 @@
 		background-color : #e0e0e0;
 	}
 	
-	.navbar {
-		padding : 45px;
-		background-color : white;	
-	}
-	
 	.container-fluid {
 		width : 100%;
 		padding : 60px;
