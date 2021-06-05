@@ -135,9 +135,9 @@ public class BusinessCardDAO {
 		}
 		
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM business_card WHERE name LIKE '%' ? '%' ORDER BY business_card_no DESC LIMIT ?, 10");
+			pstmt = conn.prepareStatement("SELECT * FROM business_card WHERE name LIKE '%' ? '%' ORDER BY business_card_no DESC LIMIT ?, 5");
 			pstmt.setString(1, keyword);
-			pstmt.setInt(2, (page - 1) * 10);
+			pstmt.setInt(2, (page - 1) * 5);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				businessCard = new BusinessCardVO();
@@ -165,14 +165,15 @@ public class BusinessCardDAO {
 		return businessCardList;
 	}
 
-	public int selectBusinessCardCount() {
+	public int selectBusinessCardCountUsingKeyword(String keyword) {
 		Connection conn = JdbcUtil.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int count = 0;
 		
 		try {
-			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM business_card");
+			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM business_card WHERE name LIKE '%' ? '%'");
+			pstmt.setString(1, keyword);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				count = rs.getInt(1);

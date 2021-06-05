@@ -33,9 +33,18 @@ public class BusinessCardListAction implements Action {
 			}
 			
 			ArrayList<BusinessCardVO> businessCardList = getBusinessCardList(page, keyword);
-			PageInfoVO pageInfo = getPageInfo(page);
 			request.setAttribute("businessCardList", businessCardList);
-			request.setAttribute("pageInfo", pageInfo);
+			
+			PageInfoVO pageInfo;
+
+			if(keyword != null && !keyword.isEmpty()) {
+				pageInfo = getPageInfo(page, keyword);
+				request.setAttribute("pageInfo", pageInfo);
+				request.setAttribute("keyword", keyword);
+			} else {
+				pageInfo = getPageInfo(page);
+				request.setAttribute("pageInfo", pageInfo);
+			}
 			
 			forward = new ActionForward("/WEB-INF/view/businessCard/businessCardList.jsp", false);
 		}
@@ -50,12 +59,17 @@ public class BusinessCardListAction implements Action {
 		return businessCardList;
 	}
 	
-	// 페이징 데이터 구하기
+	// 페이징 데이터 구하기 (파라미터:page)
 	public PageInfoVO getPageInfo(int page) {
-		int countList = 10;		// 페이지 당 레코드 수
-		int countPage = 10;	// 페이징 수
+		return getPageInfo(page, "");
+	}
+	
+	// 페이징 데이터 구하기 (파라미터: page, keyword)
+	public PageInfoVO getPageInfo(int page, String keyword) {
+		int countList = 5;		// 페이지 당 레코드 수
+		int countPage = 5;	// 페이징 수
 		
-		int totalCount = BusinessCardDAO.getInstance().selectBusinessCardCount(); // 총 레코드 개수
+		int totalCount = BusinessCardDAO.getInstance().selectBusinessCardCountUsingKeyword(keyword); // 총 레코드 개수
 		int totalPage = totalCount / countList; // 총 페이지 개수
 		
 		// (총 레코드 수 / 페이지 당 레코드 수) 계산 후, 남는 레코드가 있을 경우
@@ -66,7 +80,7 @@ public class BusinessCardListAction implements Action {
 		if(page > totalPage)
 		    page = totalPage;
 
-		int startPage = ((page - 1) / 10) * 10 + 1;
+		int startPage = ((page - 1) / countList) * countList + 1;
 		int endPage = startPage + countPage - 1;
 
 		// endPage 값이 총 페이지 값을 넘어설 경우
