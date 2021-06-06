@@ -62,6 +62,13 @@
         margin:auto;
 	}
 	
+	@media screen and (min-width: 990px) {
+		.container-fluid {
+			width : 50%;
+			margin-top: 200px;
+		}
+	}
+	
 </style>
 </head>
 <body>

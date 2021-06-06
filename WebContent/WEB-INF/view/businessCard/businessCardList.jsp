@@ -91,6 +91,14 @@
 		font-size : 30px;
 		font-weight : bold;
 	}
+	
+	@media screen and (min-width: 990px) {
+		.container-fluid {
+			width : 70%;
+			margin-top: 200px;
+		}
+	}
+	
 </style>
 <script>
 	// 키워드로 명함 검색

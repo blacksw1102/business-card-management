@@ -25,13 +25,13 @@
 		font-weight: bold;
 	}
 </style>
-<nav class="navbar navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
 	<a class="navbar-brand" href="/businessCardList">명함관리</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>		
 	</button>
 	<div class="navbar-collapse collapse" id="navbarCollapse">
-		<ul class="navbar-nav mr-auto">
+		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 			<li class="nav-item">
 				<a class="nav-link" href="/businessCardWrite">명함등록</a>
 			</li>
