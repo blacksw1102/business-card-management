@@ -92,7 +92,7 @@
 		font-weight : bold;
 	}
 	
-	@media screen and (min-width: 990px) {
+	@media screen and (min-width: 1240px) {
 		.container-fluid {
 			width : 70%;
 			margin-top: 200px;

@@ -65,7 +65,7 @@
 	}
 	
 	
-	@media screen and (min-width: 990px) {
+	@media screen and (min-width: 1240px) {
 		.container-fluid {
 			width : 50%;
 			margin-top: 200px;
