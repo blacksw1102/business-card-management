@@ -1,4 +1,4 @@
-package comblacksw.bcm.extra;
+package com.blacksw.bcm.extra;
 
 import java.io.File;
 import java.util.UUID;

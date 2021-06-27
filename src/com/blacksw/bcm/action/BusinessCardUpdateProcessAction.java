@@ -9,13 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import com.blacksw.bcm.dao.BusinessCardDAO;
 import com.blacksw.bcm.dao.UserDAO;
+import com.blacksw.bcm.extra.RandomFileNamePolicy;
 import com.blacksw.bcm.vo.ActionForward;
 import com.blacksw.bcm.vo.BusinessCardVO;
 import com.blacksw.bcm.vo.UserVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import comblacksw.bcm.extra.RandomFileNamePolicy;
 
 public class BusinessCardUpdateProcessAction implements Action {
 	
@@ -24,7 +23,7 @@ public class BusinessCardUpdateProcessAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		// ·Î±×ÀÎ °ËÁõ
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null) {
 			return forward = new ActionForward("/signin", true);
@@ -33,7 +32,7 @@ public class BusinessCardUpdateProcessAction implements Action {
 		UserVO user = (UserVO) session.getAttribute("loginUser");
 		int result = 0;
 		
-		// MultipartRequest °´Ã¼ ÃÊ±âÈ­
+		// MultipartRequest ï¿½ï¿½Ã¼ ï¿½Ê±ï¿½È­
 		String uploadPath = request.getServletContext().getRealPath("/upload");
 		System.out.println("upload path : " + uploadPath);
 		int fileSize = 5*1024*1024;
@@ -47,7 +46,7 @@ public class BusinessCardUpdateProcessAction implements Action {
 		
 		System.out.println("loginUserId : " + ((UserVO) session.getAttribute("loginUser")).getId());
 		System.out.println("articleUserId : " + multi.getParameter("userId"));
-		// ·Î±×ÀÎ À¯Àú¿Í ±Û ÀÛ¼ºÀÚ°¡ ÀÏÄ¡ÇÑÁö °ËÁõ
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if(!((UserVO) session.getAttribute("loginUser")).getId().equals(multi.getParameter("userId"))) {
 			return forward = new ActionForward("/businessCardList?page=1", true);
 		}
@@ -68,24 +67,24 @@ public class BusinessCardUpdateProcessAction implements Action {
 		businessCard.setCompanyCI(multi.getFilesystemName(file));
 		businessCard.setUserId(user.getId());
 					
-		// DAO È£Ãâ
+		// DAO È£ï¿½ï¿½
 		BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
 		result = businessCardDAO.updateBusinessCard(businessCard);
 		
-		// new image °ªÀÌ µé¾î¿À¸é old image¸¦ /upload ¿¡¼­ Áö¿î´Ù.
+		// new image ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ old imageï¿½ï¿½ /upload ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		System.out.println("oldCompanyCI : " + multi.getParameter("oldCompanyCI"));
 		System.out.println("newCompanyCI : " + multi.getFilesystemName(file));
 		if(!multi.getParameter("oldCompanyCI").equals(multi.getFilesystemName(file))) {
 			File uploadfile = new File(uploadPath + File.separator + multi.getParameter("oldCompanyCI"));
 			if(uploadfile.exists()) {
 				uploadfile.delete();
-				System.out.println("ÆÄÀÏ »èÁ¦ ¿Ï·á");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
 			} else {
-				System.out.println("ÆÄÀÏ »èÁ¦ ½ÇÆÐ");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		}
 		
-		// Æ÷¿öµå ¹ÝÈ¯
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 		if(result != 0) {
 			forward = new ActionForward("/businessCardDetail?businessCardNo=" + businessCard.getBusinessCardNo(), true);
 		} else {

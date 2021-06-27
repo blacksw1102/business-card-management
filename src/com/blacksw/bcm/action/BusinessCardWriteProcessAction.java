@@ -9,13 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import com.blacksw.bcm.dao.BusinessCardDAO;
 import com.blacksw.bcm.dao.UserDAO;
+import com.blacksw.bcm.extra.RandomFileNamePolicy;
 import com.blacksw.bcm.vo.ActionForward;
 import com.blacksw.bcm.vo.BusinessCardVO;
 import com.blacksw.bcm.vo.UserVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import comblacksw.bcm.extra.RandomFileNamePolicy;
 
 public class BusinessCardWriteProcessAction implements Action {
 	
@@ -24,7 +23,7 @@ public class BusinessCardWriteProcessAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		// ·Î±×ÀÎ °ËÁõ
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser") == null) {
 			forward = new ActionForward("/signin", true);
@@ -32,7 +31,7 @@ public class BusinessCardWriteProcessAction implements Action {
 			UserVO user = (UserVO) session.getAttribute("loginUser");
 			int result = 0;
 			
-			// MultipartRequest °´Ã¼ ÃÊ±âÈ­
+			// MultipartRequest ï¿½ï¿½Ã¼ ï¿½Ê±ï¿½È­
 			String uploadPath = request.getServletContext().getRealPath("/upload");
 			int fileSize = 5*1024*1024;
 			MultipartRequest multi = new MultipartRequest(
@@ -46,7 +45,7 @@ public class BusinessCardWriteProcessAction implements Action {
 			Enumeration<String> files = multi.getFileNames();
 			String file =  files.nextElement();
 			
-			// ºó °´Ã¼ »ý¼º
+			// ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			BusinessCardVO businessCard = new BusinessCardVO();
 			businessCard.setName(multi.getParameter("name"));
 			businessCard.setCompanyName(multi.getParameter("companyName"));
@@ -59,11 +58,11 @@ public class BusinessCardWriteProcessAction implements Action {
 			businessCard.setCompanyCI(multi.getFilesystemName(file));
 			businessCard.setUserId(user.getId());
 			
-			// DAO È£Ãâ
+			// DAO È£ï¿½ï¿½
 			BusinessCardDAO businessCardDAO = BusinessCardDAO.getInstance();
 			result = businessCardDAO.insertBusinessCard(businessCard);
 			
-			// Æ÷¿öµå ¹ÝÈ¯
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 			if(result != 0) {
 				forward = new ActionForward("/businessCardList?page=1", true);
 			} else {
